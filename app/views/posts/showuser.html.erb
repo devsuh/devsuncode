@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <tbody>
+    <tr>
+     <td><h6><b>UserName</b></h6></td> 
+     <td><h6><b>Current UserRole</b></h6></td> 
+     <td><h6><b>Change UserRole</b></h6></td> 
+    </tr>
+    <% @users.each do |user| %>
+      <tr> 
+       <td><%= user.name%></td> 
+       <td><%= user.roles_mask %></td>                     
+       <td>
+        <%= form_for user, url: user_path( user ), method: :put do |f| %>
+          <%= f.select :roles_mask, User.where.not(roles_mask: ['admin']).collect {|t| [t.roles_mask]}.uniq, {}, {class: 'form-control'} %>
+          <td>
+           <%= f.submit "Ok", :value => "Ok", :class => 'btn btn-secondary' %>
+          </td>
+        <% end %>
+        </td>
+       </td>
+      </tr>
+   <% end %>
+  </tbody>
+</table>

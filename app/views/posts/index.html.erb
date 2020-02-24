@@ -1,21 +1,26 @@
-
 <table class="table table-striped">
-  <thead>
-
-  </thead>
   <tbody>
     <tr>
-      <td><h5><b>User Name</b></h5></td>
-      <td><h5><b>Title</b></h5></td>
-    </tr>
-    <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.user.name%></td> 
-       <td><%= link_to post.title,  showblog_post_path(post) %></td> 
-      <!-- <td><%= post.title %></td> -->
-      <%#= link_to t('.Add_comments', :default => t("helpers.links.Add_comments")),
-              user_post_path(post), :class => 'btn btn-default'  %> 
-    </tr>
-    <% end %>
-  </tbody>
+     <td><h6><b>Title</b></h6></td> 
+     <td><h6><b>Author Name</b></h6></td> 
+   </tr>
+   <% @posts.each do |post| %>
+   <tr>
+     <td><%= link_to post.title, post_path(post) %></td> 
+     <td><%= post.user.name%></td> 
+   </tr>
+   <% end %>
+ </tbody>
 </table>
+<div class="bt-pgn"
+   <%= will_paginate @posts, previous_label: "Older", next_label: "Newer"%>
+</div>
+<style>
+  .bt-pgn{
+  color: black;
+  float: right;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-left: 9px;
+  }
+</style>

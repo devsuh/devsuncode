@@ -4,7 +4,7 @@ class User::CommentsController < ApplicationController
 		@comment = @post.comments.create(params[:comment].permit(:content)) 
 		@comment.user_id = current_user.id
 		if @comment.save
-			redirect_to showblog_post_path(@post)
+			redirect_to post_path(@post)
 		else
 			flash[:notice] = "did not save"
 	  end
@@ -17,7 +17,7 @@ class User::CommentsController < ApplicationController
 	def destroy
          @comment = Comment.find(params[:id])
         if @comment.destroy
-          redirect_to showblog_post_path(@comment.post)
+          redirect_to post_path(@comment.post)
          else
       	  flash[:notice] = "did not delete"
       	end

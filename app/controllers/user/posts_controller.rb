@@ -1,11 +1,12 @@
 class User::PostsController < ApplicationController
+  load_and_authorize_resource
 	def index
      @posts = current_user.posts
   end
  
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments
+   @comments = @post.comments
   end
  
   def new
@@ -51,6 +52,6 @@ class User::PostsController < ApplicationController
  
   private
     def post_params
-      params.require(:post).permit(:blog, :title)
+      params.require(:post).permit(:blog, :title, :image)
     end
 end
