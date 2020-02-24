@@ -1,0 +1,33 @@
+<% if (true) %>
+<table class="table table-striped">
+  <thead>
+
+  </thead>
+  <tbody>
+    <% current_user.posts.each do |post| %>
+    <tr>
+     <!--  <td><%= link_to post.id, post_path(post) %></td> -->
+      <% if(post.status == "draft") %>
+        <td><%= link_to post.title, post_path(post) %></td> 
+      <% else %>
+         <td><%= link_to post.title, user_post_path(post) %></td>
+       <% end %>
+
+      <td>
+      <%#= link_to t('.show', :default => t("helpers.links.show")),
+                   user_post_path(post), :class => 'btn btn-default' %> 
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                   edit_user_post_path(post), :class => 'btn btn-primary' %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    user_post_path(post),
+                    :method => 'delete',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-danger' %>
+    </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<% flash[:notice] = 'user dont have any post' %>
+<% end %>

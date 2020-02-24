@@ -1,0 +1,27 @@
+<dl class="dl-horizontal">
+	<dt><strong><%= :Title %>:</strong></dt>
+  <dd><%= @post.title %></dd>
+  <dt><strong><%= :Blog %>:</strong></dt>
+	<dd><%= raw @post.blog %></dd>
+</dl>
+
+<!-- ADD COMMENT CODE -->
+<h2>Comments</h2>
+<%= form_for Comment.new, url: user_post_comments_path(@post) do |f| %>
+	<%= f.text_area :content, placeholder: "write comment here" %>
+	<br>
+	<%= f.submit "Enter", class: "btn btn-primary" %>
+<% end %>
+<br>
+<hr>
+<% @comments.each do |comment| %>
+  <b><%= comment.user.name %>:</b>
+  <p><%= comment.content %>
+  <% if ((current_user == @post.user) || (current_user == comment.user) ) %>
+		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		  user_post_comment_path(@post,comment), 
+		  :method => 'delete', 
+		  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } 
+		%></p>
+<% end %>
+<% end %>

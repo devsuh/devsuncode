@@ -1,0 +1,21 @@
+
+<table class="table table-striped">
+  <thead>
+
+  </thead>
+  <tbody>
+    <tr>
+      <td><h5><b>User Name</b></h5></td>
+      <td><h5><b>Title</b></h5></td>
+    </tr>
+    <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.user.name%></td> 
+       <td><%= link_to post.title,  showblog_post_path(post) %></td> 
+      <!-- <td><%= post.title %></td> -->
+      <%#= link_to t('.Add_comments', :default => t("helpers.links.Add_comments")),
+              user_post_path(post), :class => 'btn btn-default'  %> 
+    </tr>
+    <% end %>
+  </tbody>
+</table>

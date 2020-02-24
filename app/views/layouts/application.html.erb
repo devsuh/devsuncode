@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Devsuh</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
+  </head>
+
+  <body>
+    <div class="container">
+    <%= render 'layouts/header' %>
+      <%= render 'layouts/flash' %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
