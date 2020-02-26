@@ -1,0 +1,12 @@
+
+<%= form_with model: @category, url: category_path(@category), local: true do |f| %>
+<div class="form-group">
+  <%= f.label :name, :class => 'control-label col-lg-2' %>
+  <%= f.text_field :name, :class => 'form-control' %>
+</div>
+<div class="form-group">
+ <div class="col-lg-offset-2 col-lg-10">
+   <%= f.submit "Update Category", :value => "Update Category", :class => 'btn btn-primary' %>
+ </div>
+</div>
+<% end %> 

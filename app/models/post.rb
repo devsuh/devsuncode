@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+	belongs_to :category
 	belongs_to :user
 	validates :blog, presence: true
 	validates :user_id, presence: true

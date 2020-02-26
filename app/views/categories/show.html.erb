@@ -1,0 +1,11 @@
+<dl>
+		<dt><strong><%= :Category %>:</strong></dt>
+		<dd><%= @category.name %></dd>
+		  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+			edit_category_path(@category), :class => 'btn btn-primary' %>
+			<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			 category_path(@category),
+			:method => 'delete', 
+			:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			:class => 'btn btn-danger'%>
+	</dl>

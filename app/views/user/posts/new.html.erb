@@ -1,5 +1,7 @@
 <%= form_with scope: :post, url: user_posts_path, local: true, html: {multipart: true} do |f| %>
  <div class="form-group">
+  <%= f.label :Category, :class => 'control-label col-lg-2' %>
+  <%= f.select :category_id, Category.all.collect {|t| [t.name, t.id]}.uniq, {}, {class: 'form-control'} %>
   <%= f.label :title, :class => 'control-label col-lg-2' %>
   <%= f.text_field :title, :class => 'form-control' %>
   <%= f.label :blog, :class => 'control-label col-lg-2' %>

@@ -1,17 +1,23 @@
 <% if(@post.status == "draft") %>
 	<dl>
+		<dt><strong><%= :Category %>:</strong></dt>
+    <dd><%=@post.category.name %></dd>
 		<dt><strong><%= :Title %>:</strong></dt>
 		<dd><%= @post.title %></dd>
 		<dt><strong><%= :Blog %>:</strong></dt>
 		<dd><%= raw @post.blog %></dd>
+		<dd><%= image_tag @post.image.url(:medium) %></dd>
 	</dl>
  <% else %>
  <% if(can? :manage, @post) %>
 	<dl class="dl-horizontal">
+		<dt><strong><%= :Category %>:</strong></dt>
+ 	  <dd><%=@post.category.name %></dd>
 		<dt><strong><%= :Title %>:</strong></dt>
 		<dd><%= @post.title %></dd>
 		<dt><strong><%= :Blog %>:</strong></dt>
 		<dd><%= raw @post.blog %></dd>
+		<dd><%= image_tag @post.image.url(:medium) %></dd>
 		<dd>
 			<%= link_to t('.edit', :default => t("helpers.links.edit")),
 			edit_user_post_path(@post), :class => 'btn btn-primary' %>
@@ -24,6 +30,8 @@
 	</dl>
 	<% else %>
 	<dl class="dl-horizontal">
+		<dt><strong><%= :Category %>:</strong></dt>
+    <dd><%=@post.category.name %></dd>
 		<dt><strong><%= :Title %>:</strong></dt>
 		<dd><%= @post.title %></dd>
 		<dt><strong><%= :Blog %>:</strong></dt>

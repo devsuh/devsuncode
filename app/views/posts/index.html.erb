@@ -1,12 +1,26 @@
+<br>
+<div>
+  <%= form_tag(post_search_index_path(:post_id), :method => "get") do %>  
+  <div class="input-group">  
+    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+    <div class="input-group-btn">  
+      <%= button_tag "search", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+    </div>  
+  </div>  
+  <% end %>
+</div>
+<br>
 <table class="table table-striped">
   <tbody>
     <tr>
      <td><h6><b>Title</b></h6></td> 
+     <td><h6><b>Category</b></h6></td>
      <td><h6><b>Author Name</b></h6></td> 
    </tr>
    <% @posts.each do |post| %>
    <tr>
      <td><%= link_to post.title, post_path(post) %></td> 
+     <td><%= post.category.name%></td>
      <td><%= post.user.name%></td> 
    </tr>
    <% end %>
@@ -17,10 +31,10 @@
 </div>
 <style>
   .bt-pgn{
-  color: black;
-  float: right;
-  padding: 8px 16px;
-  text-decoration: none;
-  margin-left: 9px;
+    color: black;
+    float: right;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin-left: 9px;
   }
 </style>

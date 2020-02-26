@@ -2,10 +2,9 @@
       <%= form_with model: @post, url: user_post_path(@post), local: true do |f| %>
       <div class="form-group">
         <%= f.label :title, :class => 'control-label col-lg-2' %>
-         <%= f.text_field :title, :class => 'form-control' %>
-       <%= f.label :blog, :class => 'control-label col-lg-2' %>
-         <%= f.cktext_area  :blog, :class => 'form-control' %>
-       
+        <%= f.text_field :title, :class => 'form-control' %>
+        <%= f.label :blog, :class => 'control-label col-lg-2' %>
+        <%= f.cktext_area  :blog, :class => 'form-control' %>  
      </div>
      <div class="form-group">
        <div class="col-lg-offset-2 col-lg-10">

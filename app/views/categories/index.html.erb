@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <tbody>
+    <tr>
+     <td><h6><b>Category</b></h6></td> 
+   </tr>
+   <% @categories.each do |cat| %>
+   <tr>
+     <td><%= cat.name %></td> 
+     <td>
+     <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_category_path(cat),
+     :class => 'btn btn-primary' %>
+     <%# debugger %>
+     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+      category_path(cat),
+     :method => 'delete', 
+     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+     :class => 'btn btn-danger'%>
+   </td>
+   </tr>
+   <% end %>
+ </tbody>
