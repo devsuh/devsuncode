@@ -5,7 +5,7 @@
 		<td><h6><b>Category</b></h6></td>
 		<td><h6><b>Author Name</b></h6></td> 
 	</tr>
-	<% @results.each do |post| %> 
+	<% @posts.each do |post| %> 
 		<tr>
 			<td>
 				<%= link_to post.title, post_path(post) %>
