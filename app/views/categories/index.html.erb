@@ -2,13 +2,14 @@
   <tbody>
     <tr>
      <td><h6><b>Category</b></h6></td> 
+     <td><%= link_to 'Create Category', new_category_path, :class => 'btn btn-primary' %></td>
    </tr>
    <% @categories.each do |cat| %>
    <tr>
      <td><%= cat.name %></td> 
      <td>
      <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_category_path(cat),
-     :class => 'btn btn-primary' %>
+     :class => 'btn btn-info' %>
      <%# debugger %>
      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
       category_path(cat),

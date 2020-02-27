@@ -1,11 +1,17 @@
 <h3>Search Result</h3>  
-<% @results.each do |post| %> 
 <table class="table table-striped">
 	<tr>
-		 <td><%= post.category.name%></td> 
-		<td>
-		 <%= link_to post.title, post_path(post) %>
-	  </td>
+		<td><h6><b>Title</b></h6></td> 
+		<td><h6><b>Category</b></h6></td>
+		<td><h6><b>Author Name</b></h6></td> 
 	</tr>
-</table> 
-<% end %>
+	<% @results.each do |post| %> 
+		<tr>
+			<td>
+				<%= link_to post.title, post_path(post) %>
+			</td>
+			<td><%= post.category.name%></td> 
+			<td><%= post.user.name%></td>
+		</tr>
+	<% end %>
+</table> 	

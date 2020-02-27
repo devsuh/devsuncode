@@ -7,8 +7,7 @@
 	 <%# debugger %>
 		<% if can? :manage, @post  %>
 	  <li class="nav-link"><%= link_to 'Users',  post_showuser_index_path(:user_id) %></li>
-	  <li class="nav-link"><%= link_to 'Create Category', new_category_path%></li>
-	  <li class="nav-link"><%= link_to 'Show Category', categories_path%></li>
+	  <li class="nav-link"><%= link_to 'Show Category', categories_path %></li>
 	  <% end %>
 	  <li class="nav-link"><%= link_to 'Edit Profile', edit_user_registration_path %></li>
 		<% if can? :read, @blog  %>
