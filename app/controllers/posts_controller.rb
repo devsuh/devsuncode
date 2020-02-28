@@ -1,14 +1,12 @@
 class PostsController < ApplicationController
 	def index
 		if params[:search].blank?  
-			@posts = Post.where(status: 'publish').paginate(page: params[:page], per_page: 2)
+			@posts = Post.where(status: 'publish').paginate(page: params[:page], per_page: 3)
 		else 
-			@parameter = params[:search].downcase 
-			category_ids = Category.where("name LIKE :search", search:  "%#{@parameter}%").ids
-			@posts = Post.where(category_id: category_ids).paginate(page: params[:page], per_page: 2)			
-		end 
-
-		
+			@parameter = params[:search]
+ 			# binding.pry
+ 			@posts = Post.joins(:category).where("categories.name ILIKE :search OR posts.title ILIKE :search", search: "%#{@parameter}%")
+    end 
 	end
 
 	def showuser
@@ -23,4 +21,13 @@ class PostsController < ApplicationController
 
 	end
 end
+     		# category_ids = Category.where("name LIKE :search", search:  "%#{@parameter}%").ids
+      		# @posts = Post.where(category_id: category_ids)	
+      	 	
+      	 # category_ids.each do |result|
+      	 # 	binding.pry
+
+      	 #@posts = Post.where(category_id: result[0], title: result[1])
+
+      	 # end	
  

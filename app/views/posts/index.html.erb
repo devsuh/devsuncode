@@ -11,8 +11,8 @@
       dataType:'script',
       data : {'search': search_val},
       success: function (response) {
-        
-        alert("avani");
+
+        //alert("avani");
       }
     });
 
@@ -22,32 +22,19 @@
 </script>
 <br>
 <div>
-  <%= form_tag(posts_path, :method => "get", remote: true) do %>  
+  <%= form_tag(posts_path, :method => "get", remote: true, autocomplete: false) do %>  
   <div class="input-group">  
     <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control", :id => "search" %>  
     <div class="input-group-btn">  
-      <%= button_tag "search", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%> 
+      <%#= button_tag "search", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%> 
     </div>  
   </div>  
   <% end %>
 </div>
 <br>
-<table class="table table-striped">
-  <tbody>
-    <tr>
-     <td><h6><b>Title</b></h6></td> 
-     <td><h6><b>Category</b></h6></td>
-     <td><h6><b>Author Name</b></h6></td> 
-   </tr>
-   <% @posts.each do |post| %>
-   <tr>
-     <td><%= link_to post.title, post_path(post) %></td> 
-     <td><%= post.category.name%></td>
-     <td><%= post.user.name%></td> 
-   </tr>
-   <% end %>
- </tbody>
-</table>
+
+<%= render "search" %>
+
 <div class="bt-pgn">
    <%= will_paginate @posts, previous_label: "Older", next_label: "Newer"%>
 </div>
