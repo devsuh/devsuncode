@@ -6,8 +6,10 @@ Rails.application.routes.draw do
 	resources :posts do  
      member do
        get 'showuser'
-       get 'search'  
+       get 'search' 
+       get 'cuser' 
      end
+    resources :cuser
 		resources :showuser
 		resources :search
 	end

@@ -20,6 +20,9 @@ class PostsController < ApplicationController
 	def search
 
 	end
+	def cuser
+			@users = User.all
+	end
 end
      		# category_ids = Category.where("name LIKE :search", search:  "%#{@parameter}%").ids
       		# @posts = Post.where(category_id: category_ids)	
@@ -30,4 +33,3 @@ end
       	 #@posts = Post.where(category_id: result[0], title: result[1])
 
       	 # end	
- 
