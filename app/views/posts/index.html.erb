@@ -47,7 +47,7 @@
     margin-left: 9px;
   }
 </style>  
-
+<% if current_user.present? %>
 <%# binding.pry %>
 <%# current_user.following.each do |folw| %> <br>
 <% @posts.each do|f| %>
@@ -63,5 +63,6 @@
   <dd><%= image_tag f.image.url(:medium) %></dd> 
 </dl>
 <%# end %> 
+<% end %>
 <% end %>
 <% end %>

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	def index
-		@posts = Post.all.each
+		 @posts = Post.all.each
 		if params[:search].blank?  
 			@posts = Post.where(status: 'publish').paginate(page: params[:page], per_page: 3)
 		else 
@@ -9,7 +9,6 @@ class PostsController < ApplicationController
  			@posts = Post.joins(:category).where("categories.name ILIKE :search OR posts.title ILIKE :search", search: "%#{@parameter}%")
     end 
 	end
-
 	def showuser
 		@post     = Post.find(params[:id])
 		@comments = @post.comments
