@@ -22,6 +22,7 @@ class User::PostsController < ApplicationController
     # end
   end
  def create
+  #binding.pry
   @post = current_user.posts.build(post_params)
    @post.status = params[:commit]
     if @post.save!
@@ -52,6 +53,6 @@ class User::PostsController < ApplicationController
  
   private
     def post_params
-      params.require(:post).permit(:blog, :title, :image, :category_id)
+      params.require(:post).permit(:blog, :title, :image, :category_id, :accessibility)
     end
 end

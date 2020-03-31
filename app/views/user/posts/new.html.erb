@@ -1,6 +1,9 @@
 <%= form_with scope: :post, url: user_posts_path, local: true, html: {multipart: true} do |f| %>  
 <% @post.errors.full_message.join(',') if @post.errors.present? %>
  <div class="form-group">
+  <%= f.label :accessibility, :class => 'control-label col-lg-2' %>
+  <%= f.select :accessibility, ['public', 'private', 'follower'] %><br>
+
   <%= f.label :Category, :class => 'control-label col-lg-2' %>
   <%= f.select :category_id, Category.all.collect {|t| [t.name, t.id]}.uniq, {}, {class: 'form-control'} %>
   <%= f.label :title, :class => 'control-label col-lg-2' %>

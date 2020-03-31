@@ -2,7 +2,6 @@
 	<ul class="navbar-nav">
 		<li class="nav-link "><%= link_to 'Home', root_path %> </li>
 	</ul>
-		<li class="nav-link "><%= link_to 'show users', cuser_post_path(:user_id)  %> </li>
 	<ul class="nav">
 	 <% if user_signed_in? %>
 	 <%# debugger %>
@@ -16,6 +15,8 @@
 		  <li class="nav-link"><%= link_to 'My Blog', user_posts_path %></li>
 		<% end %>
 		<li class="nav-link"><%= link_to 'Blogs', posts_path%></li>
+	<li class="nav-link "><%= link_to 'All Users', cuser_user_path(:user_id)  %> </li>
+		<li class="nav-link "><%= link_to 'user profile', showuserprofile_user_path(current_user.id)  %> </li>
 		<li class="nav-link"><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
 		<li class="nav-link "style="color: #FFF;"><%= current_user.name%>(<%= current_user.roles_mask%>)</li>	
 		<%# end %>

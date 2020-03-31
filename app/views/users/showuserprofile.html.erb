@@ -1,0 +1,15 @@
+<%= current_user.followers.count %>
+<%= link_to 'Followers', follower_user_path(current_user.id) %></li>
+<%= current_user.following.count %>
+<%= link_to 'Following', following_user_path(current_user.id) %></li><br>
+<% current_user.posts.each do |f| %> <br>
+<dl class="dl-horizontal">
+  <dt><strong><%= :Category %>:</strong></dt>
+  <dd><%=f.category.name %></dd>
+	<dt><strong ><%= :Title %>:</strong></dt>
+  <dd><%= f.title %></dd>
+  <dt><strong><%= :Blog %>:</strong></dt>
+	<dd><%= raw f.blog %></dd>
+  <dd><%= image_tag f.image.url(:medium) %></dd>
+</dl>
+<% end %>

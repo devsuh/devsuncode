@@ -46,5 +46,22 @@
     text-decoration: none;
     margin-left: 9px;
   }
-</style>
+</style>  
 
+<%# binding.pry %>
+<%# current_user.following.each do |folw| %> <br>
+<% @posts.each do|f| %>
+<% next if f.accessibility == 'private' %>
+<%# binding.pry %> 
+<% if((f.accessibility == 'follower' &&  current_user.following.include?(User.find(f.user_id))) || (f.accessibility == "public"))%>
+<%# if f.accessibility == 'public' %>
+<dl class="dl-horizontal">
+  <dt><strong ><%= :Title %>:</strong></dt>  
+  <dd><%= f.title %></dd> 
+  <dt><strong><%= :Blog %>:</strong></dt>
+  <dd><%= raw f.blog %></dd> 
+  <dd><%= image_tag f.image.url(:medium) %></dd> 
+</dl>
+<%# end %> 
+<% end %>
+<% end %>

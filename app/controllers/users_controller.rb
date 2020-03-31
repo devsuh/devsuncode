@@ -8,6 +8,19 @@ class UsersController < ApplicationController
 	      render ''
 	    end
   end
+  # def show
+  # end
+  def cuser
+			@users = User.all.where("id != ?", current_user.id)
+	end
+	def following
+   @user = User.find(params[:id])
+   @users = @user.following
+  end
+  def follower
+   @user = User.find(params[:id])
+   @users = @user.followers
+  end
    private
     def user_params
       params.require(:user).permit(:roles_mask)
