@@ -5,13 +5,13 @@ class FriendshipsController < ApplicationController
     # current_user.active_friendships.build
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
-     redirect_to showuserprofile_user_path(current_user.id)
+     redirect_to cuser_users_path
   end
 
   def destroy
     @user = User.find(params[:followed_id])
     current_user.unfollow(@user)
-     redirect_to showuserprofile_user_path(current_user.id)
+     redirect_to cuser_users_path
   end
 
 end
