@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 	def index
 		 @posts = Post.all.each
 		if params[:search].blank?  
-			@posts = Post.where(status: 'publish').paginate(page: params[:page], per_page: 3)
+			@posts = Post.where(status: 'publish').paginate(page: params[:page], per_page: 10)
 		else 
 			@parameter = params[:search]
  			# binding.pry
