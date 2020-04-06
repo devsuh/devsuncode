@@ -1,13 +1,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script type="text/javascript">
   $( document ).ready(function() {
-    $(".follow").click(function(){
+    $(".follow").click(function(){  
       var button_val = $(this).val();
       //alert(button_val)
       $.ajax
       ({
         type: "POST",
         url: '/friendships',
+        dataType:'script',
         data: {followed_id: button_val},
         success: function (response) {
           //alert("follow")
@@ -21,6 +22,7 @@
       ({
         type: "DELETE",
         url: '/friendships/destroy',
+        dataType:'script',
         data: {followed_id: button_val},
         success: function (response) {
           //alert("unfollow")
@@ -29,6 +31,7 @@
     });
   });
 </script>
+
 <table class="table table-striped">
   <tbody>
     <tr>

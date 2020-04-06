@@ -14,9 +14,9 @@ Rails.application.routes.draw do
 	end
 	resources :categories
 	resources :friendships do
-		member do
-
-		end
+		collection do 
+    	get 'alluser'
+    end
   end
 	resources :users do
     collection do 
