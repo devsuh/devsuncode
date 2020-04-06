@@ -1,25 +1,53 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script type="text/javascript">
+  $( document ).ready(function() {
+    $(".follow").click(function(){
+      var button_val = $(this).val();
+      //alert(button_val)
+      $.ajax
+      ({
+        type: "POST",
+        url: '/friendships',
+        data: {followed_id: button_val},
+        success: function (response) {
+          //alert("follow")
+        }
+      }); 
+    });
+    $(".unfollow").click(function(){
+      var button_val = $(this).val();
+      //alert(button_val)
+      $.ajax
+      ({
+        type: "DELETE",
+        url: '/friendships/destroy',
+        data: {followed_id: button_val},
+        success: function (response) {
+          //alert("unfollow")
+        }
+      }); 
+    });
+  });
+</script>
 <table class="table table-striped">
   <tbody>
     <tr>
      <td><h6><b>UserName</b></h6></td> 
-    </tr>
-    <% @users.each do |user| %>
-      <tr> 
-       <td><%= user.name%></td>
-       <td>
-        <%= form_for(current_user.active_friendships.build, remote: true) do |f| %>
-        <div><%= hidden_field_tag :followed_id, user.id %></div>
-        <%= f.submit "Follow", class: "btn btn-primary" %>
-        <% end %>
-</td>
-
-
-
-       <!-- <td>
-        <button type="button" class="btn btn-secondary">Follow</button>
-       </td>  -->                  
-      </tr>
-   <% end %>
-  </tbody>
+     <td>Action</td>
+   </tr>
+   <% @users.each do |user| %>
+   <tr id = '<%= user.id %>' > 
+    <td> <%= user.name %>
+     <%= hidden_field_tag :followed_id, user.id %>
+    </td>
+   <td>
+    <% if !current_user.following?(user) %>
+    <%= button_tag "follow", class: "btn btn-secondary follow", type: "submit", value: "#{user.id}" %>
+    <% else %>
+    <%= button_tag "unfollow", class: "btn btn-danger unfollow", type: "submit", value: "#{user.id}" %>
+    <% end %>
+  </td>              
+</tr>
+<% end %>
+</tbody>
 </table>
-

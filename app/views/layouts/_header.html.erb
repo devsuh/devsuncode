@@ -15,7 +15,7 @@
 		  <li class="nav-link"><%= link_to 'My Blog', user_posts_path %></li>
 		<% end %>
 		<li class="nav-link"><%= link_to 'Blogs', posts_path%></li>
-	<li class="nav-link "><%= link_to 'All Users', cuser_user_path(:user_id)  %> </li>
+	<li class="nav-link "><%= link_to 'All Users', cuser_users_path  %> </li>
 		<li class="nav-link "><%= link_to 'user profile', showuserprofile_user_path(current_user.id)  %> </li>
 		<li class="nav-link"><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
 		<li class="nav-link "style="color: #FFF;"><%= current_user.name%>(<%= current_user.roles_mask%>)</li>	

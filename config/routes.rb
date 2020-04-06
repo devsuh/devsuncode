@@ -13,14 +13,19 @@ Rails.application.routes.draw do
 		resources :search
 	end
 	resources :categories
-	resources :friendships
-	resources :users do
+	resources :friendships do
 		member do
-			get 'cuser'
+
+		end
+  end
+	resources :users do
+    collection do 
+    	get 'cuser'
+    end
+		member do
 			get 'showuserprofile'
       get 'following'
       get 'follower'
-      get 'count'
     end
 	end
 	namespace :user do

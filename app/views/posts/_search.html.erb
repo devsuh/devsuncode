@@ -1,19 +1,22 @@
-<div class="search-results-section">
-	<table class="table table-striped">
-		<tr>
-			<td><h6><b>Title</b></h6></td> 
-			<td><h6><b>Category</b></h6></td>
-			<td><h6><b>Author Name</b></h6></td> 
-		</tr>
-		<% @posts.each do |post| %> 
-			<tr>
-				<td>
-					<%= link_to post.title, post_path(post) %>
-				</td>
-				<td><%= post.category.name%></td> 
-				<td><%= post.user.name%></td>
-			</tr>
-		<% end %>
-	</table> 	
-</div>
-		
+<% if current_user.present? %>
+  <div class="search-results-section">
+  	<table class="table table-striped">
+  		<tr>
+  			<td><h6><b>Title</b></h6></td> 
+  			<td><h6><b>Category</b></h6></td>
+  			<td><h6><b>Author Name</b></h6></td> 
+  		</tr>
+  		<% @posts.each do|f| %>
+  		   <% next if f.accessibility == 'private' %>
+  		     <% if((f.accessibility == 'follower' &&  current_user.following.include?(User.find(f.user_id))) || (f.accessibility == "public"))%>
+				  		<tr>
+				  			<!-- <td><%#= f.title %></td> -->
+				  			<td><%= link_to f.title, post_path(f) %></td>
+				  			<td><%= f.category.name%></td> 
+				  			<td><%= f.user.name%></td>
+				  		</tr>
+  		      <% end %>
+  		<% end %>
+  	</table>
+  </div>
+<% end %>
