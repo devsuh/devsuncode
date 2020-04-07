@@ -3,14 +3,14 @@ class FriendshipsController < ApplicationController
   def create
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
-    @users = User.all.where("id != ?", current_user.id)
+    #@users = User.all.where("id != ?", current_user.id)
     render 'alluser'
   end
 
   def destroy
     @user = User.find(params[:followed_id])
     current_user.unfollow(@user)
-    @users = User.all.where("id != ?", current_user.id)
+     #@users = User.all.where("id != ?", current_user.id)
      render 'alluser'
   end
 

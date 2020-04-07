@@ -1,2 +1,2 @@
 
-$(".feature").html("<%= escape_javascript(render('users/cuser'))%>")
+$(".<%= @user.id %>_follow_box").html("<%= escape_javascript(render 'friendships/follow_button', user: @user)%>")

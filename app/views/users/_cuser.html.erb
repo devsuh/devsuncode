@@ -1,7 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script type="text/javascript">
-  $( document ).ready(function() {
-    $(".follow").click(function(){  
+   // $( document ).ready(function() {
+    $("body").on('click','.follow', function(){  
       var button_val = $(this).val();
       //alert(button_val)
       $.ajax
@@ -15,7 +15,7 @@
         }
       }); 
     });
-    $(".unfollow").click(function(){
+    $("body").on('click','.unfollow', function(){
       var button_val = $(this).val();
       //alert(button_val)
       $.ajax
@@ -29,7 +29,7 @@
         }
       }); 
     });
-  });
+  // });
 </script>
 
 <table class="table table-striped">
@@ -43,12 +43,8 @@
     <td> <%= user.name %>
      <%= hidden_field_tag :followed_id, user.id %>
     </td>
-   <td>
-    <% if !current_user.following?(user) %>
-    <%= button_tag "follow", class: "btn btn-secondary follow", type: "submit", value: "#{user.id}" %>
-    <% else %>
-    <%= button_tag "unfollow", class: "btn btn-danger unfollow", type: "submit", value: "#{user.id}" %>
-    <% end %>
+   <td class = '<%= "#{user.id}" %>_follow_box' >
+    <%= render 'friendships/follow_button', user: user %>
   </td>              
 </tr>
 <% end %>
