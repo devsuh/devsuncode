@@ -1,22 +1,43 @@
-<% if current_user.present? %>
-  <div class="search-results-section">
-  	<table class="table table-striped">
-  		<tr>
-  			<td><h6><b>Title</b></h6></td> 
-  			<td><h6><b>Category</b></h6></td>
-  			<td><h6><b>Author Name</b></h6></td> 
-  		</tr>
-  		<% @posts.each do|f| %>
-  		   <% next if f.accessibility == 'private' %>
-  		     <% if((f.accessibility == 'follower' &&  current_user.following.include?(User.find(f.user_id))) || (f.accessibility == "public"))%>
-				  		<tr>
-				  			<!-- <td><%#= f.title %></td> -->
-				  			<td><%= link_to f.title, post_path(f) %></td>
-				  			<td><%= f.category.name%></td> 
-				  			<td><%= f.user.name%></td>
-				  		</tr>
-  		      <% end %>
-  		<% end %>
-  	</table>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<% @posts.each do|f| %>
+<% next if f.accessibility == 'private' %>
+<% if((f.accessibility == 'follower' &&  current_user.following.include?(User.find(f.user_id))) || (f.accessibility == "public"))%>
+<div class="container">
+  <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-body">
+               <section class="post-heading">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <div class= "media-object photo-profile">
+                                  <%= image_tag f.image.url(:medium), width:"40", height:"40" %>
+                                </div>
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <a href="#" class="anchor-username"><h4 class="media-heading"><%= f.title %></h4></a> 
+                                <a href="#" class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></a>
+                              </div>
+                            </div>
+                        </div>
+                         <div class="col-md-1">
+                             <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                         </div>
+                    </div>             
+               </section>
+               <section class="post-body">
+                  <%= raw f.blog %>
+               </section>
+               
+            </div>
+        </div>   
   </div>
-<% end %>
+</div>
+  <% end %>
+  <% end %>
+               
