@@ -1,5 +1,4 @@
-	
-class Post < ApplicationRecord
+	class Post < ApplicationRecord
 	validate :a_method_used_for_validation_purposes
   def a_method_used_for_validation_purposes
     special = "?<>',?[]}{=-)(*&^%$#`~{}"
@@ -11,13 +10,13 @@ class Post < ApplicationRecord
   include Commentable
 	belongs_to :category
 	belongs_to :user
-	
+	has_many :likes, dependent: :destroy
 	#validates :title, format: { with:  /\A[a-zA-Z0-9 ]+\z/ }
 	validates :blog, presence: true
 	validates :user_id, presence: true
 	has_many :comments, dependent: :destroy
 	has_attached_file :image, styles: { large: "600*600>", medium: "300*300>", thumb: "150*150"}
-	 validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end
 	#@post = Post.create(title: "!@#%*()_-+=")
    #Post.errors.full_messages("Name cannot contain the characters !@%*()_-+=#")

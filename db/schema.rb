@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_142453) do
+ActiveRecord::Schema.define(version: 2020_04_07_105941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 2020_03_30_142453) do
     t.index ["follower_id"], name: "index_friendships_on_follower_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "blog"
     t.datetime "created_at", precision: 6, null: false
@@ -83,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_142453) do
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.integer "category_id"
-    #t.string "Accessibility"
+    t.string "Accessibility"
     t.string "accessibility"
   end
 
@@ -102,4 +111,6 @@ ActiveRecord::Schema.define(version: 2020_03_30_142453) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
 end

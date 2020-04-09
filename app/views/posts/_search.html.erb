@@ -1,43 +1,86 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<% if current_user.present? %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script type="text/javascript">
+    //$( document ).ready(function() {
+      $("body").on('click','.like', function(){ 
+        var button_val = $(this).val();
+      //alert(button_val)
+      $.ajax
+      ({
+        type: "POST",
+        url: '/likes',
+        dataType:'script',
+        data: {post_id: button_val},
+        success: function (response) {
+          //alert("like")
+        }
+      }); 
+    });
+      $("body").on('click','.unlike', function(){ 
+        var button_val = $(this).val();
+        var like_id = $('#like_id').val();
+      // alert(button_val)
+      // alert(like_id)
+      $.ajax
+      ({
+        type: "DELETE",
+        url: '/likes/destroy',
+        dataType:'script',
+        data: {post_id: button_val, like_id: like_id},
+        success: function (response){
+          //alert("unlike")
+        }
+      }); 
+    });
+   //});
+ </script>
 
-<% @posts.each do|f| %>
-<% next if f.accessibility == 'private' %>
-<% if((f.accessibility == 'follower' &&  current_user.following.include?(User.find(f.user_id))) || (f.accessibility == "public"))%>
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+ <% @posts.each do|f| %>
+ <% next if f.accessibility == 'private' %>
+ <% if((f.accessibility == 'follower' &&  current_user.following.include?(User.find(f.user_id))) || (f.accessibility == "public"))%>
 <div class="container">
   <div class="col-md-5">
-        <div class="panel panel-default">
-            <div class="panel-body">
-               <section class="post-heading">
-                    <div class="row">
-                        <div class="col-md-11">
-                            <div class="media">
-                              <div class="media-left">
-                                <a href="#">
-                                  <div class= "media-object photo-profile">
-                                  <%= image_tag f.image.url(:medium), width:"40", height:"40" %>
-                                </div>
-                                </a>
-                              </div>
-                              <div class="media-body">
-                                <a href="#" class="anchor-username"><h4 class="media-heading"><%= f.title %></h4></a> 
-                                <a href="#" class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></a>
-                              </div>
-                            </div>
-                        </div>
-                         <div class="col-md-1">
-                             <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                         </div>
-                    </div>             
-               </section>
-               <section class="post-body">
-                  <%= raw f.blog %>
-               </section>
-               
+    <div class="panel panel-default">
+      <div class="panel-body">
+       <section class="post-heading">
+        <div class="row">
+          <div class="col-md-11">
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                  <div class= "media-object photo-profile">
+                    <%= image_tag f.image.url(:medium), width:"40", height:"40" %>
+                  </div>
+                </a>
+              </div>
+              <div class="media-body">
+                <a href="#" class="anchor-username"><h4 class="media-heading"><%= f.title %></h4></a> 
+                <a href="#" class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></a>
+              </div>
             </div>
-        </div>   
-  </div>
+          </div>
+        </div>             
+      </section>
+      <section class="post-body">
+        <%= raw f.blog %>
+      </section>
+      <section class="post-footer">
+        <div class="post-footer-option container">
+          <div class="glyphicon">
+            <%# debugger %>
+            <div class = '<%= "#{f.id}" %>_like_box' >
+              <%= render 'likes/like_button', f: f %>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>   
 </div>
-  <% end %>
-  <% end %>
-               
+</div>
+<% end %>
+<% end %>
+<% end %>

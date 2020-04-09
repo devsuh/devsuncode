@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_many :likes, dependent: :destroy
+  
   has_many :passive_friendships, class_name:"Friendship", foreign_key: "followed_id", dependent: :destroy
   has_many :active_friendships, class_name:"Friendship", foreign_key: "follower_id", dependent: :destroy
   has_many :following, through: :active_friendships, source: :followed

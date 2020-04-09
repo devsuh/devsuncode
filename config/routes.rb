@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 	devise_for :users
 	root 'posts#index' 
 	# root 'welcome#index'
-	resources :posts do  
+	resources :posts do 
      member do
        get 'showuser'
        get 'search'   
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 		resources :search
 	end
 	resources :categories
+  resources :likes
 	resources :friendships do
 		collection do 
     	get 'alluser'
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
 	end
 	namespace :user do
 		resources :posts do
-    resources :comments 
-end
-end
+      resources :comments 
+    end
+  end
 end

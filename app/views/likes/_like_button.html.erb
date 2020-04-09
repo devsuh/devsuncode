@@ -1,0 +1,11 @@
+<%# debugger %>
+<% pre_like = f.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+<%= hidden_field_tag :like_id, pre_like.id %>
+<%= button_tag "unlike", class: "btn btn-secondary unlike", type: "submit", value: "#{f.id}" %>
+<% else %>
+<%= button_tag "like", class: "btn btn-secondary like", type: "submit", value: "#{f.id}" %>
+<% end %>
+<% if f.likes.count > 0 %>
+Likes: <%=f.likes.count %>
+<% end %>

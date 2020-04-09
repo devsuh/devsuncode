@@ -31,7 +31,6 @@
     });
   // });
 </script>
-
 <table class="table table-striped">
   <tbody>
     <tr>
@@ -42,7 +41,7 @@
    <tr id = '<%= user.id %>' > 
     <td> <%= user.name %>
      <%= hidden_field_tag :followed_id, user.id %>
-    </td>
+   </td>
    <td class = '<%= "#{user.id}" %>_follow_box' >
     <%= render 'friendships/follow_button', user: user %>
   </td>              
