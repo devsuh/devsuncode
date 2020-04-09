@@ -57,7 +57,7 @@
                 </a>
               </div>
               <div class="media-body">
-                <a href="#" class="anchor-username"><h4 class="media-heading"><%= f.title %></h4></a> 
+                <a href="#" class="anchor-username"><h4 class="media-heading"><%= link_to f.title, post_path(f) %></h4></a> 
                 <a href="#" class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></a>
               </div>
             </div>
@@ -84,3 +84,4 @@
 <% end %>
 <% end %>
 <% end %>
+

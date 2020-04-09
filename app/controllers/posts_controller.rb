@@ -9,7 +9,7 @@ class PostsController < ApplicationController
  			@posts = Post.joins(:category).where("categories.name ILIKE :search OR posts.title ILIKE :search", search: "%#{@parameter}%")
     end 
 	end
-	def showuser
+	def show
 		@post     = Post.find(params[:id])
 		@comments = @post.comments
 	end
