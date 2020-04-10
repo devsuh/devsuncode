@@ -20,3 +20,8 @@
 end
 	#@post = Post.create(title: "!@#%*()_-+=")
    #Post.errors.full_messages("Name cannot contain the characters !@%*()_-+=#")
+   def user_likes(post)
+   	post.likes.pluck(:user_id).map do |user_id| 
+   		User.find(user_id).name
+   	end
+   end

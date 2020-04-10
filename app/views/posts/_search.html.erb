@@ -18,9 +18,9 @@
     });
       $("body").on('click','.unlike', function(){ 
         var button_val = $(this).val();
-        var like_id = $('#like_id').val();
-      // alert(button_val)
-      // alert(like_id)
+        var like_id = $(this).data('id');
+       //alert(button_val)
+        //alert(like_id)
       $.ajax
       ({
         type: "DELETE",
@@ -48,6 +48,7 @@
        <section class="post-heading">
         <div class="row">
           <div class="col-md-11">
+            <span class="badge-pill badge-info"><%= f.category.name %></span>
             <div class="media">
               <div class="media-left">
                 <a href="#">
@@ -59,6 +60,7 @@
               <div class="media-body">
                 <a href="#" class="anchor-username"><h4 class="media-heading"><%= link_to f.title, post_path(f) %></h4></a> 
                 <a href="#" class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></a>
+                <%= f.category.name %>
               </div>
             </div>
           </div>
@@ -70,7 +72,6 @@
       <section class="post-footer">
         <div class="post-footer-option container">
           <div class="glyphicon">
-            <%# debugger %>
             <div class = '<%= "#{f.id}" %>_like_box' >
               <%= render 'likes/like_button', f: f %>
             </div>

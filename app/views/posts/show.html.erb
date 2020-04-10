@@ -1,4 +1,38 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script type="text/javascript">
+    //$( document ).ready(function() {
+      $("body").on('click','.like', function(){ 
+        var button_val = $(this).val();
+      //alert(button_val)
+      $.ajax
+      ({
+        type: "POST",
+        url: '/likes',
+        dataType:'script',
+        data: {post_id: button_val},
+        success: function (response) {
+          //alert("like")
+        }
+      }); 
+    });
+      $("body").on('click','.unlike', function(){ 
+        var button_val = $(this).val();
+        var like_id = $('#like_id').val();
+      // alert(button_val)
+      // alert(like_id)
+      $.ajax
+      ({
+        type: "DELETE",
+        url: '/likes/destroy',
+        dataType:'script',
+        data: {post_id: button_val, like_id: like_id},
+        success: function (response){
+          //alert("unlike")
+        }
+      }); 
+    });
+   //});
+ </script>
 <% if(@post.status == "draft") %>
 		<dl>
 			<dt><strong><%= :Category %>:</strong></dt>
@@ -38,6 +72,9 @@
 		<dt><strong><%= :Blog %>:</strong></dt>
 		<dd><%= raw @post.blog %></dd>
 		<dd><%= image_tag @post.image.url(:medium) %></dd>
+		<div class = '<%= "#{@post.id}" %>_like_box' >
+			<%= render 'likes/like_button', f: @post %>
+		</div>
 	</dl>
 <% end %>
 
@@ -62,4 +99,10 @@ user_post_comment_path(@post,comment),
 %>
 <% end %>
 <% end %>
-<% end %>
+<% end %><br>
+<strong>Likes:</strong> 
+<%= user_likes(@post).join(', ') %>
+<%# @users= @post.likes.pluck(:user_id).map! do|user_id| %>
+<%#= User.find(user_id).name %> 
+<%# end %>
+<%#= @users.join(',') %>
