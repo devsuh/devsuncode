@@ -7,4 +7,6 @@
 <% end %>
 <% if f.likes.count > 0 %>
 Likes: <%=f.likes.count %>
-<% end %>
+<% end %><br>
+<strong>Likes:</strong> 
+<%= user_likes(f).join(', ') %>
