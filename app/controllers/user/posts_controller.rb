@@ -3,10 +3,10 @@ class User::PostsController < ApplicationController
 	def index
      @posts = current_user.posts
   end
- 
+  
   def show
     @post = Post.find(params[:id])
-   @comments = @post.comments
+    @comments = @post.comments
   end
  
   def new
@@ -38,7 +38,7 @@ class User::PostsController < ApplicationController
         # if @post.save!
         @post.update_attribute(:status, params[:commit])
 	      redirect_to user_posts_path
-	      flash[:notice] = 'successfully change '
+	      flash[:notice] = 'successfully change'
 	    else
 	      render 'edit'
 	    end
@@ -52,6 +52,7 @@ class User::PostsController < ApplicationController
   end
  
   private
+
     def post_params
       params.require(:post).permit(:blog, :title, :image, :category_id, :accessibility)
     end

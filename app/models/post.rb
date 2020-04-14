@@ -1,16 +1,26 @@
-	class Post < ApplicationRecord
-	validate :a_method_used_for_validation_purposes
-  def a_method_used_for_validation_purposes
-    special = "?<>',?[]}{=-)(*&^%$#`~{}"
-    regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
-    if title =~ regex 
-      errors.add(:title, "not special character allowed")
-    end 
-  end
-  include Commentable
-	belongs_to :category
-	belongs_to :user
-	has_many :likes, dependent: :destroy
+class Post < ApplicationRecord
+    def year
+      created_at.year
+    end
+    def month
+      created_at.strftime("%m")
+    end
+    def to_param
+      "#{id}-#{title.parameterize}"
+    end
+    
+    validate :a_method_used_for_validation_purposes
+    def a_method_used_for_validation_purposes
+      special = "?<>',?[]}{=-)(*&^%$#`~{}"
+      regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+      if title =~ regex 
+        errors.add(:title, "not special character allowed")
+      end 
+    end
+    include Commentable
+    belongs_to :category
+    belongs_to :user
+    has_many :likes, dependent: :destroy
 	#validates :title, format: { with:  /\A[a-zA-Z0-9 ]+\z/ }
 	validates :blog, presence: true
 	validates :user_id, presence: true
@@ -25,3 +35,7 @@ end
    		User.find(user_id).name
    	end
    end
+    # :action => 'show', :id => post, user_post_path(post)
+    # def self.find(param)
+    #   find_by! id: param
+    # end

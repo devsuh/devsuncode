@@ -58,8 +58,8 @@
                 </a>
               </div>
               <div class="media-body">
-                <a href="#" class="anchor-username"><h4 class="media-heading"><%= link_to f.title, post_path(f) %></h4></a> 
-                <a href="#" class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></a>
+                <div class="anchor-username"><h4 class="media-heading"><%= link_to f.title, pshow_path(year: f.year, month: f.month, id: f.id, title: f.title.parameterize) %></h4></div> 
+                <div class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></div>
                 <%= f.category.name %>
               </div>
             </div>
