@@ -100,8 +100,8 @@ user_post_comment_path(@post,comment),
 <% end %>
 <% end %>
 <% end %><br>
-<!-- <strong>Likes:</strong> 
-<%#= user_likes(@post).join(', ') %> -->
+<strong>Likes:</strong> 
+<%= user_likes(@post).join(', ') %>
 <%# @users= @post.likes.pluck(:user_id).map! do|user_id| %>
 <%#= User.find(user_id).name %> 
 <%# end %>
