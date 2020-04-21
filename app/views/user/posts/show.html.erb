@@ -26,7 +26,7 @@ user_posts_path, :class => 'btn btn-default'  %>
 <br>	
 
 <!-- ADD COMMENT CODE -->
-<h2>Comments</h2> 
+<!-- <h2>Comments</h2>  -->
 <%#= form_for Comment.new, url: user_post_comments_path(@post) do |f| %>
 	<%#= f.text_area :content, placeholder: "write comment here" %>
 	<br>
@@ -34,7 +34,7 @@ user_posts_path, :class => 'btn btn-default'  %>
 <%# end %>
 <br>
 <hr>
-<% @comments.each do |comment| %>
+<% @comments.each do |comment|%>
   <strong><%= comment.user.name %>:- </strong><%= comment.content %><br>
   <% if ((current_user == @post.user) || (current_user == comment.user)) %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

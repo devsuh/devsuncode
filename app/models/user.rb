@@ -12,17 +12,31 @@ class User < ApplicationRecord
   has_many :following, through: :active_friendships, source: :followed
   has_many :followers, through: :passive_friendships, source: :follower
   def follow(user)
-    active_friendships.create(followed_id: user.id)
+     if user.follow_role == "Follow-Directly"
+      active_friendships.create(followed_id: user.id)
+     else
+       active_friendships.create(followed_id: user.id, status: 'pending')
+    end
   end
 
   def unfollow(user)
     active_friendships.find_by(followed_id: user.id).destroy
   end
+
   def following?(user)
     following.include?(user)
-  end  
+  end 
+
+  def current_status(user)
+    #binding.pry
+    Friendship.find_by(followed_id: user.id, follower_id: id).try(:status)
+  end
 
   enum roles_mask: %i[admin author blogreader]
   ROLES = %i[author blogreader] 
+
+  
+  # enum follow_role: %i[Follow-Directly Follow-on-Approval]
+  ROLESS = %i[Follow-Directly Follow-on-Approval] 
 end
 

@@ -1,0 +1,37 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script type="text/javascript">
+    $("body").on('click','.confirm', function(){  
+      var button_val = $(this).val();
+      $.ajax
+      ({
+        type: "PUT",
+        url: '/friendships/update',
+        dataType:'script',
+        data: {followed_id: button_val},
+        success: function (response) {
+        }
+      }); 
+    });
+    $("body").on('click','.deletereq', function(){  
+      var button_val = $(this).val();
+      $.ajax
+      ({
+        type: "DELETE",
+        url: '/friendships/removerequest',
+        dataType:'script',
+        data: {followed_id: button_val},
+        success: function (response) {
+        }
+      }); 
+    });
+</script>
+<table class="table table-striped">
+	<tr>
+		<% @freqs.each do |fuser| %>
+		  <% user = User.find(fuser.follower_id) %>
+		  <td><%= user.name %></td>
+		  <td><%= button_tag "confirm", class: "btn btn-primary confirm", type: "submit", value: "#{user.id}" %>
+		  	<%= button_tag "delete", class: "btn btn-secondary deletereq", type: "submit", value: "#{user.id}" %></td>
+	</tr>
+	<% end %>
+</table>

@@ -89,7 +89,7 @@
 <br>
 <hr>
 <% end %>
-<% @comments.each do |comment| %>
+<% @comments.each do |comment| %> <br>
 <strong><%= comment.user.name %>:- </strong><%= comment.content %><br>
 <% if ((current_user == @post.user) || (current_user == comment.user) ) %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

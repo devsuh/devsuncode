@@ -8,9 +8,9 @@
     <tr>
      <!--  <td><%= link_to post.id, post_path(post) %></td> -->
       <% if(post.status == "draft") %>
-        <td><%= link_to post.title, pshow_path(year: post.year, month: post.month, id: post.id, title: post.title.parameterize) %></td> 
+        <td><%= link_to post.title, ushow_path(year: post.year, month: post.month, id: post.id, title: post.title.parameterize) %></td> 
       <% else %>
-         <td><%= link_to post.title, pshow_path(year: post.year, month: post.month, id: post.id, title: post.title.parameterize) %></td>
+         <td><%= link_to post.title, ushow_path(year: post.year, month: post.month, id: post.id, title: post.title.parameterize) %></td>
        <% end %>
 
       <td>

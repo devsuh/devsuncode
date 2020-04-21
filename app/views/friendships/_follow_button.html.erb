@@ -1,5 +1,19 @@
-<% if !current_user.following?(user) %>
-<%= button_tag "follow", class: "btn btn-secondary follow", type: "submit", value: "#{user.id}" %>
+<%# binding.pry %>
+<% if user.follow_role == "Follow-Directly" %> 
+  <% if !current_user.following?(user) %>
+    <%= button_tag "follow", class: "btn btn-secondary follow", type: "submit", value: "#{user.id}" %>
+  <% else %>
+    <%= button_tag "unfollow", class: "btn btn-danger unfollow", type: "submit", value: "#{user.id}" %>
+  <% end %>
 <% else %>
-<%= button_tag "unfollow", class: "btn btn-danger unfollow", type: "submit", value: "#{user.id}" %>
+  <% if !current_user.following?(user) %>
+    <%= button_tag "follow", class: "btn btn-secondary follow", type: "submit", value: "#{user.id}" %>
+    <% else %>
+    <%#binding.pry %>
+    <% if current_user.current_status(user) == "follow" %>
+    <%= button_tag "unfollow", class: "btn btn-danger unfollow", type: "submit", value: "#{user.id}" %>  
+    <% else %>
+    <%= button_tag "pending", class: "btn btn-danger unfollow", type: "submit", value: "#{user.id}" %>
+  <% end %>
+<% end %>
 <% end %>
