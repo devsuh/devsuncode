@@ -3,7 +3,7 @@
 <br>
 <%= form_with scope: :user, url: save_follow_role_users_path, method: :put, local: true do |f| %>
 <%- User::ROLESS.each do | role | %>
-<%= f.radio_button :follow_role, role %>
+<%= f.radio_button :follow_role, role  %>
 <label> <%= role %></label><br>
 <% end %>
 <%#= hidden_field_tag "user[roless][]", "" %>

@@ -5,7 +5,5 @@ class Friendship < ApplicationRecord
 	# validates :follower_id, presence: true
 	# validates :followed_id, presence: true
 	#binding.pry
-	def current_status(user)
-    Friendship.where(followed_id: current_user.id, follower_id: user.id).pluck("status")
-  end
+	
 end

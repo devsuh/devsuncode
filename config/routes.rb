@@ -17,7 +17,8 @@ Rails.application.routes.draw do
  resources :categories
  resources :likes
  resources :friendships do
-  collection do 
+  collection do
+   get 'allrequest' 
    get 'alluser'
    delete 'removerequest'
  end

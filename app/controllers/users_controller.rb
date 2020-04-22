@@ -12,11 +12,13 @@ class UsersController < ApplicationController
 	def save_follow_role
 		current_user.update(follow_role_params)
 		redirect_to showuserprofile_user_path(current_user)
+		flash[:notice] = 'successfully setting update'
 	end
 
 	def frequest	
 		@users = User.all
 		@freqs = Friendship.where(followed_id: current_user.id, status: "pending")
+		# redirect_to frequest_user_path
 	end
 
 	def cuser

@@ -19,7 +19,6 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    #binding.pry
     @abc = Friendship.where(followed_id: current_user.id, follower_id: params[:followed_id])
     @abc.update(status: "follow")
   end

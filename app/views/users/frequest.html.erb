@@ -26,12 +26,11 @@
     });
 </script>
 <table class="table table-striped">
-	<tr>
-		<% @freqs.each do |fuser| %>
-		  <% user = User.find(fuser.follower_id) %>
+	<% @freqs.each do |fuser| %>
+		<% user = User.find(fuser.follower_id) %>
+	  <tr id = "button-<%= user.id %>">
 		  <td><%= user.name %></td>
-		  <td><%= button_tag "confirm", class: "btn btn-primary confirm", type: "submit", value: "#{user.id}" %>
-		  	<%= button_tag "delete", class: "btn btn-secondary deletereq", type: "submit", value: "#{user.id}" %></td>
-	</tr>
+		  <td id = "confirm-button-<%= user.id %>"><%= render 'friendships/confirm_button', user: user %></td>
+	  </tr>
 	<% end %>
 </table>
