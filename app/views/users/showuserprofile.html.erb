@@ -2,11 +2,15 @@
 <br>
 <br>
 <%= form_with scope: :user, url: save_follow_role_users_path, method: :put, local: true do |f| %>
-<%- User::ROLESS.each do | role | %>
-<%= f.radio_button :follow_role, role  %>
-<label> <%= role %></label><br>
-<% end %>
-<%#= hidden_field_tag "user[roless][]", "" %>
+<%# User::ROLESS.each do | role | %>
+<%#= f.radio_button :follow_role, role %>
+<!-- <label> <%#= role %></label><br> -->
+<%# end %>
+<%= f.radio_button :follow_role, "Follow-Directly", checked: current_user.follow_role == 'Follow-Directly' %>
+<label>Follow-Directly </label><br> 
+
+<%= f.radio_button :follow_role, "Follow-on-Approval", checked: current_user.follow_role == 'Follow-on-Approval' %>
+<label>Follow-on-Approval </label><br> 
 <%= f.submit "Ok", class: "btn btn-primary" %>
 <% end %>
 

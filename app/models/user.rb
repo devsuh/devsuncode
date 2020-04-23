@@ -32,6 +32,7 @@ class User < ApplicationRecord
     Friendship.find_by(followed_id: user.id, follower_id: id).try(:status)
   end
 
+  
   enum roles_mask: %i[admin author blogreader]
   ROLES = %i[author blogreader] 
 
