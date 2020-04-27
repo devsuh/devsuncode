@@ -36,6 +36,11 @@ class UsersController < ApplicationController
 		@users = @user.followers
 	end
 
+	def otheruserprofile
+		 @ub = User.find(params[:id])
+     @post = @ub.posts
+	end
+
 	private
 	def user_params
 		params.require(:user).permit(:roles_mask)

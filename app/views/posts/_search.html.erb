@@ -59,8 +59,8 @@
               </div>
               <div class="media-body">
                 <div class="anchor-username"><h4 class="media-heading"><%= link_to f.title, pshow_path(year: f.year, month: f.month, id: f.id, title: f.title.parameterize) %></h4></div> 
-                <div class="anchor-time"><%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></div>
-                <%= f.category.name %>
+                <div class="anchor-time"><%= f.user.name %> at <%= f.created_at.strftime("#{f.created_at.day} %B ")%></div>
+                  <%= f.category.name %>
               </div>
             </div>
           </div>

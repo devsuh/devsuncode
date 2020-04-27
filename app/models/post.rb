@@ -17,7 +17,7 @@ class Post < ApplicationRecord
         errors.add(:title, "not special character allowed")
       end 
     end
-    include Commentable
+    # include Commentable
     belongs_to :category
     belongs_to :user
     has_many :likes, dependent: :destroy

@@ -39,7 +39,7 @@
    </tr>
    <% @users.each do |user| %>
    <tr id = '<%= user.id %>' > 
-    <td> <%= user.name %>
+    <td><%= link_to user.name, otheruserprofile_user_path(user)%>
      <%= hidden_field_tag :followed_id, user.id %>
    </td>
    <td class = '<%= "#{user.id}" %>_follow_box' >

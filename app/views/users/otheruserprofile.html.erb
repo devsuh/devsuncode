@@ -1,0 +1,88 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script type="text/javascript">
+      $("body").on('click','.like', function(){ 
+        var button_val = $(this).val();
+      $.ajax
+      ({
+        type: "POST",
+        url: '/likes',
+        dataType:'script',
+        data: {post_id: button_val},
+        success: function (response) {
+        }
+      }); 
+    });
+      $("body").on('click','.unlike', function(){ 
+        var button_val = $(this).val();
+        var like_id = $(this).data('id');
+      $.ajax
+      ({
+        type: "DELETE",
+        url: '/likes/destroy',
+        dataType:'script',
+        data: {post_id: button_val, like_id: like_id},
+        success: function (response){
+        }
+      }); 
+    });
+  $("body").on('click','.follow', function(){  
+      var button_val = $(this).val();
+      //alert(button_val)
+      $.ajax
+      ({
+        type: "POST",
+        url: '/friendships',
+        dataType:'script',
+        data: {followed_id: button_val},
+        success: function (response) {
+          //alert("follow")
+        }
+      }); 
+    });
+    $("body").on('click','.unfollow', function(){
+      var button_val = $(this).val();
+      //alert(button_val)
+      $.ajax
+      ({
+        type: "DELETE",
+        url: '/friendships/destroy',
+        dataType:'script',
+        data: {followed_id: button_val},
+        success: function (response) {
+          //alert("unfollow")
+        }
+      }); 
+    });
+ </script>
+ <%# @user.each do |user| %>
+	 <%= hidden_field_tag :followed_id, @ub.id %>
+	 <div class = '<%= "#{@ub.id}" %>_follow_box' >
+	 	<%= render 'friendships/follow_button', user: @ub %>
+	 </div>
+ <%# end %>
+<% @post.each do |f| %> <br>
+	<dl class="dl-horizontal">
+		<dt><strong><%= :Category %>:</strong></dt>
+		<dd><%=f.category.name %></dd>
+		<dt><strong ><%= :Title %>:</strong></dt>
+		<dd><%= f.title %></dd>
+		<dt><strong><%= :Blog %>:</strong></dt>
+		<dd><%= raw f.blog %></dd>
+		<dd><%= image_tag f.image.url(:medium) %></dd>
+	</dl>
+		<div class = '<%= "#{f.id}" %>_like_box' >
+			<%= render 'likes/like_button', f: f %>
+		</div>
+  <h4>Comments</h4>
+	<% f.comments.each do |comment|%>
+		<strong><%= comment.user.name %>:- </strong><%= comment.content %><br>
+		<% if ((current_user == f.user) || (current_user == comment.user)) %>
+			<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			user_post_comment_path(@post,comment), 
+			:method => 'delete', 
+			:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } 
+			%>
+		<% end %><br>
+	<% end %>
+<% end %> 
+

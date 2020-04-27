@@ -31,6 +31,7 @@ resources :users do
  member do
    get 'frequest'
    get 'showuserprofile'
+   get 'otheruserprofile'
    get 'following'
    get 'follower'
  end
