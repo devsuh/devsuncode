@@ -1,12 +1,13 @@
 class PostsController < ApplicationController
-	def index
-		@posts = Post.all.each
+	def index 
+		@posts = Post.all
 		if params[:search].blank?  
 			@posts = Post.where(status: 'publish').paginate(page: params[:page], per_page: 10)
 		else 
 			@parameter = params[:search]
 			@posts = Post.joins(:category).where("categories.name ILIKE :search OR posts.title ILIKE :search", search: "%#{@parameter}%")
-		end 
+		end
+
 	end
 
 	def show
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
 	end
 
 	def search
-
+		 
 	end
 	
 end

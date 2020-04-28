@@ -37,7 +37,6 @@
 
  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
  <% @posts.each do|f| %>
  <% next if f.accessibility == 'private' %>
  <% if((f.accessibility == 'follower' &&  current_user.following.include?(User.find(f.user_id))) || (f.accessibility == "public"))%>
@@ -58,9 +57,9 @@
                 </a>
               </div>
               <div class="media-body">
-                <div class="anchor-username"><h4 class="media-heading"><%= link_to f.title, pshow_path(year: f.year, month: f.month, id: f.id, title: f.title.parameterize) %></h4></div> 
-                <div class="anchor-time"><%= f.user.name %> at <%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></div>
-                  <%= f.category.name %>
+                <div class="anchor-username"><h4 class="media-heading"><%= link_to f.title, pshow_path(year: f.year, month: f.month, id: f.id, title: f.title.parameterize) %></h4></div>
+                  <div class="anchor-time"><%= link_to f.user.name, otheruserprofile_user_path(f.user) %> at <%= f.created_at.strftime("%B %d %Y, %l:%M%P")%></div>
+                    <%= f.category.name %>
               </div>
             </div>
           </div>

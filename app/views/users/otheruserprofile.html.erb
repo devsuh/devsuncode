@@ -75,7 +75,7 @@
               </div>
               <div class="media-body">
                 <div class="anchor-username"><h4 class="media-heading"><%= link_to f.title, pshow_path(year: f.year, month: f.month, id: f.id, title: f.title.parameterize) %></h4></div> 
-                <div class="anchor-time">By <%= link_to f.user.name, pshow_path(year: f.year, month: f.month, id: f.id, title: f.title.parameterize) %> at <%= f.created_at.strftime("%B %d %Y, %H:%M %P")%></div>
+                <div class="anchor-time">By <%= link_to f.user.name, otheruserprofile_user_path %> at <%= f.created_at.strftime("%B %d %Y, %H:%M %P")%></div>
                 <%= f.category.name %>
               </div>
             </div>
