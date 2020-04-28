@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 	def frequest	
 		@users = User.all
 		@freqs = Friendship.where(followed_id: current_user.id, status: "pending")
-		# redirect_to frequest_user_path
 	end
 
 	def cuser
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
 	def following
 		@user = User.find(params[:id])
 		@users = @user.following.where(friendships:{status: 'follow'})
-
 	end
 
 	def follower
