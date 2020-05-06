@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 	# root 'welcome#index'
   get "/user/posts/:year/:month/:id-:title" => "user/posts#show", :as => :ushow
    get "/posts/:year/:month/:id-:title" => "posts#show", :as => :pshow
-	resources :posts do
+	resources :messages
+  resources :posts do
    member do
      get 'showuser'
      get 'search'   
